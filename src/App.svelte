@@ -145,7 +145,7 @@
     <li> <a href="https://images.allthescience.org/slideshow-mobile-small/archaebacteria-diagram.jpg"> Archaea Image </li>
       <li> <a href="https://media.npr.org/assets/img/2015/05/05/lokis-castle_custom-7e6ab7912fe71c61c115ccc29515ec924140f561.jpg"> Loki's Castle Image </li>
     <li> <a href="https://astrobiochem.files.wordpress.com/2019/02/sample-essay-on-regulation-of-gene-expression.jpg?w=810"> DNA image </li>
-
+ 
     </ul>
   </footer>
 
