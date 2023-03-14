@@ -4,6 +4,7 @@
     import DnaSelector from './lib/DNASelector.svelte';
     import HmMvalues from './lib/HMMvalues.svelte';
     import ProbCalc from './lib/ProbCalc.svelte';
+    import Table from './lib/Table.svelte';
 
     import {hiddenStates} from './stores.js';
 
@@ -91,7 +92,7 @@
         In HMMs, the <strong> core assumption</strong> is that the probability of each state depends only on the previous state, and the probability of each event depends only on the current state.
     </p>
 
-    <img src="./images/HMM.png" alt="diagram of HMM with three states and three observations">
+    <img src="./images/hmm.png" alt="diagram of HMM with three states and three observations">
 
     <p>  We can depict HMMs with graph images, where the top row represents the sequence of hidden states (x_i), and the bottom row represents the observations (y_i) generated from those states. 
       Notice that the arrows represent dependence of one state/event on another.</p>
@@ -99,7 +100,7 @@
     <p> Applying HMMs to our problem, the status of low- or high-GC region at every nucleotide are the hidden states, and the nucleotides observed are the resulting observations from each state.</p>
     <p> The transition and emission probabilities for low- and high-GC regions in Archaea are the following:</p>
 
-    <HmMvalues/>
+    <Table/>
 
     <p> The total probability of a sequence of hidden states will be the cumulative probability of each state transition and each observed emission. We can represent this probability with the following equation:</p>
 
