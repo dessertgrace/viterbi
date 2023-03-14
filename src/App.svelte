@@ -20,10 +20,10 @@
 
     <div class="imageWrap">
       <div style="max-height:400px"  class="innerimage">
-        <img style="max-height:400px" src="/src/assets/lokiCastle.jpeg" alt="loki's castle underwater hydrothermal vent structure">
+        <img style="max-height:400px" src="./images/lokiCastle.jpeg" alt="loki's castle underwater hydrothermal vent structure">
       </div>
       <div style="max-height:400px"  class="innerimage">
-        <img style="max-height:400px" src="/src/assets/archaea.jpeg" alt="Archaea clip art with labelled parts">
+        <img style="max-height:400px" src="./images/archaea.jpeg" alt="Archaea clip art with labelled parts">
       </div>
   </div>
 
@@ -39,7 +39,7 @@
     <h2> Biology Background</h2>
 
     <div style="max-height:400px"  class="innerimage">
-      <img style="max-height:400px" src="/src/assets/DNA.jpeg" alt="Diagram of DNA, RNA, amino-acid sequence, and protein">
+      <img style="max-height:400px" src="./images/DNA.jpeg" alt="Diagram of DNA, RNA, amino-acid sequence, and protein">
     </div>
     
     <p> Image caption: 
@@ -91,7 +91,7 @@
         In HMMs, the <strong> core assumption</strong> is that the probability of each state depends only on the previous state, and the probability of each event depends only on the current state.
     </p>
 
-    <img src="/src/assets/HMM.png" alt="diagram of HMM with three states and three observations">
+    <img src="./images/HMM.png" alt="diagram of HMM with three states and three observations">
 
     <p>  We can depict HMMs with graph images, where the top row represents the sequence of hidden states (x_i), and the bottom row represents the observations (y_i) generated from those states. 
       Notice that the arrows represent dependence of one state/event on another.</p>
