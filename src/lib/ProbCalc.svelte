@@ -9,12 +9,18 @@
     nucsS.forEach(function (nucS, index) {
         selected.push(false);
     })
+
+    function updateContRegions() {
+        // console.log('ok')
+    }
+
     $: { 
     if ($hiddenStates.length>0) {
         $hiddenStates.forEach(function (nucS, index) {
             selected[index] = nucS;
         });
     }
+    updateContRegions()
     }
 
     
@@ -37,9 +43,11 @@
   <div class="wrapper" id="nucWrap">
     
     {#each nucsS as name, index}
-    <button class:selected={selected[index]} on:click={() => {select(index)}} class="nuc">
-        {name}
-    </button>
+    <div>
+        <button class:selected={selected[index]} on:click={() => {select(index)}} class="nuc">
+            {name}
+        </button>
+    </div>
     {/each}
 
   </div>
@@ -48,6 +56,7 @@
 
     .nuc {
         grid-row: 1/2;
+        width: 100px;
     }
 
     button {

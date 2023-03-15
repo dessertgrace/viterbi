@@ -14,5 +14,9 @@
     "gh-pages": "^5.0.0",
     "svelte": "^3.55.1",
     "vite": "^4.1.0"
-  } 
+  },
+  "dependencies": {
+    "katex": "^0.16.4",
+    "svelte-katex": "^0.1.2"
+  }
 }
