@@ -134,7 +134,7 @@
       We call these the <strong> transition </strong> and <strong> emission probabilities</strong>. The tradeoff between them makes up the core statistical problem of what we call "hidden state decoding". 
     </p>
 
-    <p> We can use a statistical model to help us quantify and solve the problem. </p>
+    <p> We can use a statistical model to help us quantify and solve this problem. </p>
 
     <hr>
     <h2> Hidden Markov Models</h2>
@@ -143,41 +143,72 @@
         and the probability of an event depends only on the current state.
     </p>
 
-    <img src="./images/hmm.png" alt="diagram of HMM with three states and three observations">
 
-    <p>  We can depict HMMs with a graph diagram, as shown above, where the top row represents the sequence of hidden states (x_i), and the bottom row represents the observations (y_i) generated from those states. 
-      Notice that the arrows represent dependence of one state/event on another.</p>
+    <div class="imageWrap">
+      <div class="innerimage" >
+      <div class="tableImg">
+        <img src="./images/hmmMe.jpeg" alt="diagram of HMM with three states and three observations" style='max-width: 600px'>
+        <Collapsible headerText={'Learn More!'} >
+            <div class="content">
+              We can depict HMMs with a graph diagram, as shown above, where the top row represents the sequence of hidden states, <Katex>{String.raw`s_i`}</Katex>, and the bottom row represents the observations,<Katex>{String.raw`o_i`}</Katex>, generated from those states. 
+            </div>
+          </Collapsible>
+        </div>
+      </div>
+      </div>
 
     <p> Applying HMMs to our problem, the status of low- or high-GC region at every nucleotide are the hidden states, and the nucleotides observed are the resulting observations from each state.</p>
     <p> The transition and emission probabilities for low- and high-GC regions in Archaea are the following:</p>
 
-    <Table/>
+    
+    <div class="imageWrap">
+      <div class="innerimage" >
+      <div class="tableImg">
+        <img src="./images/probs.jpeg" alt="diagram of HMM with three states and three observations" style='max-width: 650px'>
+        <Collapsible headerText={'Learn More!'} >
+            <div class="content">
+              <!-- These transition and emission probabilities can also be described with the following tables:
+              <Table/>   -->
+              This means, for example, that if we are currently in a lowGC state, there is a 30% chance that we will observe an 'A' nucleotide, and there is a 99% chance that we will stay in a lowGC-state and a 1% chance of transitioning to a highGC state, for the next nucleotide.           
+            </div>
+          </Collapsible>
+        </div>
+      </div>
+      </div>
 
-    <p> The total probability of a sequence of hidden states will be the cumulative 
+    <p> Given the assumptions of our HMM, the total probability of a sequence of hidden states will be the cumulative 
       probability of each state given the previous state, <Katex>{String.raw`P(s_i | s_{i-1})`}</Katex>,
-      and each observation given the current state, <Katex>{String.raw`P(o_i | s_i)`}</Katex>. 
+      and the probability of each observation given the current state, <Katex>{String.raw`P(o_i | s_i)`}</Katex>. 
 
-      We can represent the total probability of a sequence with the following equation:</p>
+      We can represent the total probability of a sequence of hidden states with the following equation:</p>
 
 
     <div class="imageWrap">
       <div class="innerimage" >
       <div class="tableImg">
     <div class="math">
-      <Katex>{String.raw`P = \prod_{k=0}^{n} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
+      <Katex>{String.raw`P_{total} = \prod_{k=0}^{n} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
     </div>
     <Collapsible headerText={'Wait... what??'} >
       <div class="content">
-        The <Katex>{String.raw`P = \prod_{k=0}^{n} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
+        The probability of some event <Katex>{String.raw`x`}</Katex> given some condition <Katex>{String.raw`y`}</Katex> is notated <Katex>{String.raw`P(x|y)`}</Katex>.
+        <br>
+        <br>
+        Pi (<Katex>{String.raw`\prod`}</Katex>) Notation, or Product Notation, is used to indicate repeated multiplication, similar to <Katex>{String.raw`\sum`}</Katex> for addition. 
+        <!-- <br>
+        <br>
+        Given the assumptions of our HMM, the total probability of a sequence of hidden states is the probability of each state transition and each emission in the resulting state, all multiplied together. -->
       </div>
     </Collapsible>
     </div>
     </div>
     </div>
 
-    <p> where __ is the ___ of __, and __ is the ___ of __. </p>
+    <p> Using this equation and the probabilities above, 
+      calculate the probability of your selected sequence of hidden states,
+      and try to find the maximum-probability sequence!
+    </p>
 
-    <p> Using this equation, calculate the probability of your selected sequence of hidden states given the following transition and emission probabilities.</p>
 
     <ProbCalc hiddenStates={hiddenStates}/>
 
@@ -337,7 +368,7 @@ main {
     font-size: 16px;
   }
   .math {
-    font-size: 18px;
+    font-size: 16px;
   }
   button {
     font-size: 14px;

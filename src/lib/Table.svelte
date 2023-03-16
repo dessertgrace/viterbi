@@ -4,36 +4,6 @@
   
   <div class="wrapper">
 
-
-  <table>
-    <tr class="titleRow" >
-        <th colspan="5" >Emission Probabilities</th>
-    </tr>
-    
-    <tr>
-        <th></th>
-    <th>A</th>
-    <th>T</th>
-    <th>G</th>
-    <th>C</th>
-    </tr>
-    <tr>
-        <th>low-GC</th>
-        <td>0.3</td>
-        <td>0.3</td>
-        <td>0.2</td>
-        <td>0.2</td>
-    </tr>
-    <tr>
-        <th>high-GC</th>
-        <td>0.1</td>
-        <td>0.1</td>
-        <td>0.4</td>
-        <td>0.4</td>
-    </tr>
-    
-    </table>
-
     <table>
         <tr class="titleRow" >
             <th colspan="3" >Transition Probabilities</th>
@@ -46,16 +16,45 @@
         </tr>
         <tr>
             <th>low-GC</th>
-            <td>0.95</td>
-            <td>0.05</td>
+            <td>0.99</td>
+            <td>0.01</td>
         </tr>
         <tr>
             <th>high-GC</th>
-            <td>0.01</td>
-            <td>0.99</td>
+            <td>0.05</td>
+            <td>0.95</td>
         </tr>
        
         </table>
+
+        <table>
+          <tr class="titleRow" >
+              <th colspan="5" >Emission Probabilities</th>
+          </tr>
+          
+          <tr>
+              <th></th>
+          <th>A</th>
+          <th>T</th>
+          <th>G</th>
+          <th>C</th>
+          </tr>
+          <tr>
+              <th>low-GC</th>
+              <td>0.3</td>
+              <td>0.3</td>
+              <td>0.2</td>
+              <td>0.2</td>
+          </tr>
+          <tr>
+              <th>high-GC</th>
+              <td>0.1</td>
+              <td>0.1</td>
+              <td>0.4</td>
+              <td>0.4</td>
+          </tr>
+          
+          </table>
 
 
 </div>
@@ -69,9 +68,10 @@
     .wrapper{
         display: flex;
         flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
         max-width: 800px;
-        margin: auto auto;
-    
+        /* margin: auto auto; */
     }
 
     .titleRow {
@@ -87,8 +87,9 @@
     table, th, tr, td {
         border: 1px black solid;
         border-collapse: collapse;
-        padding: 1.5ch;
+        padding: 1ch;
         align-items: center;
+        font-size: 17px;
     }
   
     table {
@@ -102,7 +103,7 @@
     }
   
     @media screen and (max-width: 600px) {
-    table {
+      table, th, tr, td {
       font-size: 14px;
     }
   }

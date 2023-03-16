@@ -138,6 +138,7 @@
         cursor: default;
         outline: none;   
         width: 70px;  
+        color: black;
     }
 
     .nuc {
@@ -148,6 +149,7 @@
         grid-row: 2/3;
         border-radius: 5px;
         display: block;
+        color: black;
     }
 
     .bWrap {
