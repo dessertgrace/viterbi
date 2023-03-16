@@ -1,4 +1,6 @@
 <script>
+    import Katex from 'svelte-katex'
+    
     let DNA = "ATTCCGCGTATCCGGGGTTATGCGCCTTCCCCC";
 
     import {hiddenStates} from '../stores.js';

@@ -5,7 +5,7 @@
     
     export let hiddenStates;
 
-    let totalProb = 0.5*0.99^(DNA.length-1);
+    
     let selected=[];
     let nucsS = DNA.split("");
     nucsS.forEach(function (nucS, index) {
@@ -30,6 +30,9 @@
     nucsS.forEach(function () {
         emsPs.push(0.25);
     })
+    let totalProb;
+    emsPs = updateEmsPs(selected);
+    totalProb = updateTP(transPs, emsPs);
 
     function updateTransPs(selected){
         selected.forEach(function (nucS, index) {
@@ -57,7 +60,6 @@
     }
 
     function updateEmsPs(selected) {
-        nucsS
         let highGCEms = [0.1,0.1,0.4,0.4]; // A, T, G, C
         let lowGCEms = [0.3,0.3,0.2,0.2]; // A, T, G, C
         let out = ["A",'T','G','C'];
@@ -127,7 +129,13 @@
                 <div class="bWrap"> 
                     <button class:selectedTrans={selected[index]} class="clean offPos">
                         {transPs[index]}
+                        <svg width="40px" height="40px" viewBox="0 0 80 40" class="transArrow">
+                            <path stroke="#000" stroke-width="3" fill="none"
+                                d="M9 38 A 18 20 0 0 1 64 40
+                                    M68 35 63 41 57 35 68 35Z"/>
+                        </svg>
                     </button>
+                    
                 </div>
                 {/each}
         </div>
@@ -174,6 +182,16 @@
                 <div class="bWrap"> 
                     <button class="clean">
                         {emsPs[index]}
+                        <svg viewBox="0 0 40 40" class="emArrow">
+                            <defs>
+                              <marker id="arrowhead" markerWidth="7" markerHeight="7" 
+                              refX="3.5" refY="0">
+                                <polygon points="7 0, 3.5 5, 0 0" />
+                              </marker>
+                            </defs>
+                            <line x1="20" y1="1" x2="20" y2="10" stroke="#000" 
+                            stroke-width="0.7" marker-end="url(#arrowhead)" />
+                          </svg>
                     </button>
                 </div>
                 {/each}
@@ -192,6 +210,19 @@
     </div>
 
   <style>
+
+    .emArrow {
+        position: absolute;
+        top: -32px;
+        left: 0px;
+    }
+
+    .transArrow {
+        position: absolute;
+        transform: rotate(90);
+        top: 18px;
+        left: 15px;
+    }
 
     .totalMath{
         text-align: left;
@@ -247,6 +278,8 @@
     }
 
     .transitions {
+        position: relative;
+        margin-bottom: 8px;
         grid-row: 1/2;
         /* margin: 1em 0;  */
         display: flex;
@@ -263,14 +296,7 @@
     .emissions {
         grid-row: 4/5;
         /* margin: 1em 0;  */
-        display: flex;
-        height: 70px;
-        align-items: center;
-    }
-
-    .cum {
-        grid-row: 5/6;
-        /* margin: 1em 0;  */
+        padding-top: 10px;
         display: flex;
         height: 70px;
         align-items: center;
@@ -301,6 +327,7 @@
     }
 
     .clean{
+        position: relative;
         background-color: white;
         height: 10px;
         padding: 0em 0.5em;
@@ -345,7 +372,7 @@
     .scrollR {
         overflow-x: auto;
         display: grid;
-        gap: 15px;
+        gap: 5px;
         border-bottom: 1px gray solid;
     }
 
@@ -385,9 +412,9 @@
     .nuc, .lab, .clean {
         width: 40px;
     }
-    .selectedState, .selectedTrans {
+    /* .selectedState, .selectedTrans {
         height: 40px;
-    }
+    } */
     #statelabels {
         height: 40px;
     }
@@ -396,6 +423,10 @@
     }
     .offPos {
         left: -20px;
+    }
+    .transArrow {
+        top: 4px;
+        left: 2px;
     }
 }
 
