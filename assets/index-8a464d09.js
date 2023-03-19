@@ -377,7 +377,7 @@ M500 241 v40 H399408 v-40z M500 435 v40 H400000 v-40z`};class Er{constructor(e){
     <p class="svelte-5d2ma0"><strong>by Grace Dessert, March 2023</strong></p> 
     <h3>Thanks for interacting with this interactive lesson!</h3> 
     <p style="margin: 0px" class="svelte-5d2ma0">The content is based on real breakthroughs in biology over the past decade. Read this seminal scientific paper to learn more!</p> 
-    <ul><li><a href="https://doi.org/10.1038/nmicrobiol.2016.48">Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016). https://doi.org/10.1038/nmicrobiol.2016.48</a></li></ul> 
+    <ul><li><a href="https://doi.org/10.1038/nmicrobiol.2016.48">Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016).</a></li></ul> 
     
     <h3>Acknowledgements</h3> 
     <ul><li>Thank you to my sister Juju for help with biology and inspiration to study Archaea.</li> 
