@@ -1,7 +1,7 @@
 <script>
     import Katex from 'svelte-katex'
 
-    let DNA = "ATTCCGCGTATCCGGGGTTATGCGCCTTCCCCC";
+    let DNA = "ATTCTACGACGCGCCGCCCACGTCAAGCTATTCAA";
     
     export let hiddenStates;
 
@@ -23,7 +23,7 @@
 
     let transPs=[];
     nucsS.forEach(function () {
-        transPs.push(0.99);
+        transPs.push(0.8);
     })
 
     let emsPs=[];
@@ -42,16 +42,16 @@
                 // if highGC
                 if (selected[index]) {
                     if (selected[index]==selected[index-1]) {
-                        transPs[index]=0.95;
+                        transPs[index]=0.8;
                     } else {
-                        transPs[index]=0.01;
+                        transPs[index]=0.2;
                     }
                 } else {
                     // if lowGC
                     if (selected[index]==selected[index-1]) {
-                        transPs[index]=0.99;
+                        transPs[index]=0.8;
                     } else {
-                        transPs[index]=0.05;
+                        transPs[index]=0.2;
                     }
                 }
             }
@@ -202,7 +202,7 @@
 
     <div id="row3">
         <div class="totalMath"> 
-            <Katex>{String.raw`P_{total}=`}{totalProb}</Katex>
+            <Katex>{String.raw`P_{total}=`}{totalProb.toExponential(2)}</Katex>
         </div>
         <p> scroll <i class="arrow right" ></i> </p>
     </div>

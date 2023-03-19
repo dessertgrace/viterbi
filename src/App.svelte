@@ -12,6 +12,9 @@
     import Katex from 'svelte-katex'
     import Quiz from './lib/Quiz.svelte';
     import VitTable from './lib/VitTable.svelte';
+    import Trellis from './lib/Trellis.svelte';
+    import Quiz2 from './lib/Quiz2.svelte';
+    import PathBuild from './lib/PathBuild.svelte';
 
 </script>
 
@@ -171,7 +174,7 @@
             <div class="content">
               <!-- These transition and emission probabilities can also be described with the following tables:
               <Table/>   -->
-              This means, for example, that if we are currently in a lowGC state, there is a 30% chance that we will observe an 'A' nucleotide, and there is a 99% chance that we will stay in a lowGC-state and a 1% chance of transitioning to a highGC state, for the next nucleotide.           
+              This means, for example, that if we are currently in a lowGC state, there is a 30% chance that we will observe an 'A' nucleotide, and there is an 80% chance that we will stay in a lowGC-state and a 20% chance of transitioning to a highGC state, for the next nucleotide.           
             </div>
           </Collapsible>
         </div>
@@ -189,7 +192,7 @@
       <div class="innerimage" >
       <div class="tableImg">
     <div class="math">
-      <Katex>{String.raw`P_{n} = \prod_{k=0}^{n-1} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
+      <Katex>{String.raw`P_{n} = \prod_{k=1}^{n} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
     </div>
     <Collapsible headerText={'Wait... what??'} >
       <div class="content">
@@ -200,10 +203,10 @@
         <br>
         <br>
         Given the assumptions of our HMM, the total probability of a sequence of hidden states is the probability of each state transition and each emission in the resulting state, all multiplied together.
-        We start with the first nucleotide at position <Katex>{String.raw`k=0`}</Katex>, and end with the last nucleotide at <Katex>{String.raw`k=n-1`}</Katex>, given there are <Katex>{String.raw`n`}</Katex> total nucleotides. 
+        We start with the first nucleotide at position <Katex>{String.raw`k=1`}</Katex>, and end with the last nucleotide at <Katex>{String.raw`k=n`}</Katex>, given there are <Katex>{String.raw`n`}</Katex> total nucleotides. 
         <br>
         <br>
-        At <Katex>{String.raw`k=0`}</Katex>, we need to know the initial state probabilities for both states, which for simplicity we say are equal. <br> <Katex>{String.raw`P(s_0)=0.5`}</Katex>.
+        At <Katex>{String.raw`k=1`}</Katex>, we need to know the initial state probabilities for both states, which for simplicity we say are equal. <br> <Katex>{String.raw`P(s_1)=0.5`}</Katex>.
 
       </div>
     </Collapsible>
@@ -238,82 +241,132 @@
     <h2> The Viterbi Algorithm </h2>
     <p> The Viterbi Algorithm can be used to decode the most likely sequence of hidden states given a sequence of observations. </p>
 
-
-    <div class="math">
-      <Katex>{String.raw`P_{n} = \prod_{i=0}^{n-1} P(s_i | s_{i-1}) P(o_i | s_i)`}</Katex>
-    </div>
-
     <p>
       You might notice that there is often a lot of redundancy in calculating the probabilities of sequences of states. 
       Because of the Markov assumptions, the optimal sequence of hidden states through some state <Katex>i</Katex>, <Katex>{String.raw`P_{i}`}</Katex>, must include the optimal sequence of hidden states through the previous state <Katex>i-1</Katex>, <Katex>{String.raw`P_{i-1}`}</Katex>, ending in the optimal state at <Katex>i-1</Katex>.
       Since we can reference a smaller optimization problem in the full solution, we can reuse computation to find the full solution much more efficiently than the brute force method. 
     </p>
 
+    <p> If this doesn't make any sense, don't worry. Let's go through some examples. We can visualize the sequences of hidden states, or paths, 
+      using a simple "trellis" diagram, where any sequence of hidden states can be drawn as a path from left to right on the diagram.</p>
+
+
+    <Trellis/>
+
+
     <p> 
-      Suppose we know the optimal sequences through the previous nucleotide <Katex>{String.raw`P_{i-1,k}`}</Katex> ending in every possible state <Katex>k</Katex>.
-      The optimal next sequence <Katex>{String.raw`P_{i,k}`}</Katex> ending in state <Katex>k</Katex> will be the most probable of the following options, assuming we only have 2 states.
+      Generalizing these equations, if we know the optimal sequences through the previous nucleotide <Katex>{String.raw`P_{i-1,k}`}</Katex> ending in every possible state <Katex>k</Katex>,
+      the optimal next sequence <Katex>{String.raw`P_{i,k}`}</Katex> ending in state <Katex>k</Katex> will be the most probable of the following options (assuming there are only 2 states, h and l).
     </p>
 
     <div class="math">
       <Katex>{String.raw`P_{i,k} =  max\left\{
         \begin{array}{l}
-          P_{i-1,1}*P(k|1)*P(o_i|k)\\
-          P_{i-1,2}*P(k|2)*P(o_i|k)
+          P_{i-1,l}*P(k|l)*P(o_i|k)\\
+          P_{i-1,h}*P(k|h)*P(o_i|k)
         \end{array}
       \right.
       `}</Katex>
     </div>
 
-    <p> So, we have to store a "family of optimal subproblems".  </p>
+    <p> So, we can follow this system of solving for the optimal path probability of larger and larger sequences. 
+      At each step we store the probabilities of the "family" of optimal suproblems, 
+      <Katex>{String.raw`P_{i,l}`}</Katex> and <Katex>{String.raw`P_{i,h}`}</Katex>, 
+      so we can use them in the next step. This system of building larger and larger solutions, reusing computation, is called <em> dynamic programming</em>, and is an advanced tool for solving complex computations efficiently. </p>
 
-    <p> We can visualize this using a table holding the solutions of optimal subproblems, given 2 states and n observations. </p>
+
+    <p> We can visualize this system with a table of the optimal subproblem probabilities, given 2 states and n observations. 
+      For each subproblem, we use the previous optimal probabilities and keep track of which of the two options was best with "backpointers", indicated as arrows.
+      Solve the subproblems of increasing size to find the probability of the optimal full path! </p>
 
     <VitTable/>
 
+    <p> Nice job! The probability of the optimal full path is the maximum of the two options in the last column, <Katex>{String.raw`P_{33,l}`}</Katex> and <Katex>{String.raw`P_{33,h}`}</Katex>. </p>
+
+    <p> But what is the corresponding optimal path? To find this, we have to backtrack through the table to find the choices we made at each <Katex>max</Katex> function, indicated with our backpointers. 
+      Follow them from the end to the front, selecting the highGC nucleotides, to build the optimal path!</p>
+
+    <PathBuild/>
+
+    <p> Nice job! Now we found one structural-protein coding region in our section of Archaeal DNA! That means this sequence is likely used to make proteins for the cell wall, membrane, and/or skeleton.</p>
+
+    <p> Using a sequence-comparison tool that your friend made, 
+      you find that this sequence is the same as the sequence for <strong> actin</strong>, 
+      a common protein thought to be found only in Eukarotic organisms, which plants and animals are.</p>
+
+    <p> Archaea and Eukaryotes are thought to be different domains of life.</p>
+
+    <Quiz2/>
     
-    <p> recursion </p>
+    <p> This discovery completely changes our theory of the tree of life! 
+      The discovery of this Archaea, named <strong> Lokiarchaea </strong>, among other related species (some of which are named after Thor and Odin), led to the 
+      refactoring of the <strong> eukaryogenesis theory</strong>, or the idea of how eukaryotes first came to be. 
+    </p>
 
-    <p> dynamic programming </p>
+    <div class="imageWrap">
+      <div class="innerimage" >
+      <div class="tableImg">
+          <img src="./images/asgard.png" alt="Diagram of DNA, RNA, amino-acid sequence, and protein">
+          <Collapsible headerText={'Learn More!'} >
+            <div class="content">
+              Before this discovery, Eukaryotes were throught to have evolved after a prokaryotic cell (either bacteria or archaea) engulfed another cell. 
+              <br>
+              <br>
+              The <strong> three-domain</strong> tree of life was the dominant theory taught in all biology classes around the world.
+              But in the last decade, after more and more of these Archaea were discovered and studied using computational biology techniques, 
+              scientists now largely agree on the <strong> two-domain</strong> tree of life, where Eukaryotes developed from Archaea directly. 
+              </div>
+          </Collapsible>
+        </div>
+      </div>
+      </div>
 
-    <p> viterbi table </p>
+    <p> This breakthrough has huge implications for how we understand evolution, Archaea, and even ourselves. 
+      Archaea were largely understudied organisms and often thought to be more similar to bacteria than to eukaryotes. 
+      Now, researchers all over the world are opening their eyes to these fantastically complex species and rushing to uncover their secrets.
+      While the two-domain tree of life is an important piece of the puzzle, the mystery of eukaryogenesis is still largely unsolved. 
 
-    <p> fill in one box interactive </p>
+      <br> <br>
+      <em>
+    How did this immense complexity of life develop? How were bacteria and viruses involved? Where do we go from here? </em> </p>
 
-    <p> auto fill in whole table with button click and animation fill </p>
+    <hr> 
+    <h2> Reflect and Review!</h2>
 
-    <p> backtracking explanation </p>
+    <ul>
+      <li style="text-align:left"> Archaea are single-celled microorganisms that often live in extreme environments.</li>
+      <li style="text-align:left"> Viterbi decoding is a dynamic programming technique used to find the most likely sequence of hidden states using data that follows the assumptions of a Hidden Markov Model.</li>
+      <li style="text-align:left"> You used viterbi decoding to find one structural-protein encoding region in Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes! </li>
+      <li style="text-align:left"> This led to a new theory of the tree of life, where Eukaryotes developed directly from Archaea rather than separately. </li>
 
-    <p> select optimal nucleotides backwards </p>
-
-    <p> best path!</p>
-
-    <p> auto-whole-process with responsive probabilities</p>
-
-    <p> limitations of viterbi decoding! </p>
-
-    <p> summary section </p>
-
-    <p> list of main points of lesson</p>
+    </ul>
 
   </body>
 
   <footer>
     <hr>
-    <hr>
-    <p> <strong> by Grace Dessert </strong> </p>
-    <p> <strong> March 2023 </strong> </p>
-    <br>
-    <h3> Thanks for engaging with this interactive lesson!</h3>
-    <h3> Thank you to my sister Juju for help with biology and inspiration to study Archaea.</h3>
-    <h3> This lesson is based on the following Nature publication: </h3>
-    <h3> References:</h3>
+    <p> <strong> by Grace Dessert, March 2023 </strong> </p>
+    <h3> Thanks for interacting with this interactive lesson! </h3>
+    <p style="margin: 0px"> The content is based on real breakthroughs in biology over the past decade. Read this seminal scientific paper to learn more!</p>
+    <ul>
+      <li> <a href="https://doi.org/10.1038/nmicrobiol.2016.48"> Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016). https://doi.org/10.1038/nmicrobiol.2016.48</a></li>
+    </ul>
+    <!-- <br> -->
+    <h3> Acknowledgements </h3>
+    <ul>
+      <li> Thank you to my sister Juju for help with biology and inspiration to study Archaea.</li>
+      <li> Thank you to my brother Daniel for being my guinea pig student and for constructive edits.</li>
+      <li> Thank you to so many of my friends for listening to me talk about this project constantly and providing contructive edits. </li>
+    </ul>
+    <h3> Image references:</h3>
     <ul>
       <li> <a href="https://avikdas.com/assets/images/2019-06-24-dynamic-programming-for-machine-learning-hidden-markov-models/hmm-bare.png"> HMM Image </a></li>
       <li> <a href="https://www.cis.upenn.edu/~cis2620/notes/Example-Viteri-DNA.pdf"> UPenn Viterbi Example</a> </li>
     <li> <a href="https://images.allthescience.org/slideshow-mobile-small/archaebacteria-diagram.jpg"> Archaea Image </li>
       <li> <a href="https://media.npr.org/assets/img/2015/05/05/lokis-castle_custom-7e6ab7912fe71c61c115ccc29515ec924140f561.jpg"> Loki's Castle Image </li>
     <li> <a href="https://astrobiochem.files.wordpress.com/2019/02/sample-essay-on-regulation-of-gene-expression.jpg?w=810"> DNA image </li>
- 
+      <li> <a href="https://biologicalsciences.blogs.bristol.ac.uk/2019/12/09/our-deep-origins-deciphering-the-earliest-branches-on-the-tree-of-life/"> Tree of life image </li>
+
     </ul>
   </footer>
 
