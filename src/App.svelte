@@ -349,7 +349,7 @@
     <h3> Thanks for interacting with this interactive lesson! </h3>
     <p style="margin: 0px"> The content is based on real breakthroughs in biology over the past decade. Read this seminal scientific paper to learn more!</p>
     <ul>
-      <li> <a href="https://doi.org/10.1038/nmicrobiol.2016.48"> Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016). https://doi.org/10.1038/nmicrobiol.2016.48</a></li>
+      <li> <a href="https://doi.org/10.1038/nmicrobiol.2016.48"> Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016).</a></li>
     </ul>
     <!-- <br> -->
     <h3> Acknowledgements </h3>
