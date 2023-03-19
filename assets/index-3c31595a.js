@@ -375,7 +375,7 @@ M500 241 v40 H399408 v-40z M500 435 v40 H400000 v-40z`};class Er{constructor(e){
       <li style="text-align:left">You used viterbi decoding to find one structural-protein encoding region in Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes!</li> 
       <li style="text-align:left">This led to a new theory of the tree of life, where Eukaryotes developed directly from Archaea rather than separately.</li>`,Wn=B(),aa=w("footer"),aa.innerHTML=`<hr class="svelte-5d2ma0"/> 
     <p class="svelte-5d2ma0"><strong>by Grace Dessert, March 2023</strong></p> 
-    <h3>Thanks for interacting with this interactive lesson!</h3> 
+    <h3>Thanks for engaging with this interactive lesson!</h3> 
     <p style="margin: 0px" class="svelte-5d2ma0">The content is based on real breakthroughs in biology over the past decade. Read this seminal scientific paper to learn more!</p> 
     <ul><li><a href="https://doi.org/10.1038/nmicrobiol.2016.48">Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016).</a></li></ul> 
     
