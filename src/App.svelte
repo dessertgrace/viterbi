@@ -105,7 +105,7 @@
     </div>
     
 
-    <p> Archaea have a single circular chromosome of DNA (a super-coiled strand of DNA with proteins) that can be anywhere from 0.5-7 million nucleotides long. 
+    <p> Archaea have a single circular piece of DNA that can be anywhere from 0.5-7 million nucleotides long. 
       To investigate our Archaea, 
       we want to find protein-coding DNA regions and determine their function. 
     </p>
@@ -288,7 +288,7 @@
 
     <PathBuild/>
 
-    <p> Nice job! Now we found one structural-protein coding region in our section of Archaeal DNA! That means this sequence is likely used to make proteins for the cell wall, membrane, and/or skeleton.</p>
+    <p> Great! Now we found one structural-protein coding region in our section of Archaeal DNA! That means this sequence is likely used to make proteins for the cell wall, membrane, and/or skeleton.</p>
 
     <p> Using a sequence-comparison tool that your friend made, 
       you find that this sequence is the same as the sequence for <strong> actin</strong>, 
@@ -300,7 +300,7 @@
     
     <p> This discovery completely changes our theory of the tree of life! 
       The discovery of this Archaea, named <strong> Lokiarchaea </strong>, among other related species (some of which are named after Thor and Odin), led to the 
-      refactoring of the <strong> eukaryogenesis theory</strong>, or the idea of how eukaryotes first came to be. 
+      refactoring of the <strong> eukaryogenesis theory</strong>, or the theory of how eukaryotes first came to be. 
     </p>
 
     <div class="imageWrap">
@@ -309,12 +309,12 @@
           <img src="./images/asgard.png" alt="Diagram of DNA, RNA, amino-acid sequence, and protein">
           <Collapsible headerText={'Learn More!'} >
             <div class="content">
-              Before this discovery, Eukaryotes were throught to have evolved after a prokaryotic cell (either bacteria or archaea) engulfed another cell. 
+              Before this discovery, Eukaryotes were thought to have evolved after a prokaryotic cell (either bacteria or archaea) engulfed another cell. 
               <br>
               <br>
-              The <strong> three-domain</strong> tree of life was the dominant theory taught in all biology classes around the world.
+              The <strong>three-domain</strong> tree of life was the dominant theory taught in all biology classes around the world.
               But in the last decade, after more and more of these Archaea were discovered and studied using computational biology techniques, 
-              scientists now largely agree on the <strong> two-domain</strong> tree of life, where Eukaryotes developed from Archaea directly. 
+              scientists have found strong evidence for a<strong> two-domain</strong> tree of life, where Eukaryotes developed from Archaea directly. 
               </div>
           </Collapsible>
         </div>
@@ -336,7 +336,7 @@
     <ul>
       <li style="text-align:left"> Archaea are single-celled microorganisms that often live in extreme environments.</li>
       <li style="text-align:left"> Viterbi decoding is a dynamic programming technique used to find the most likely sequence of hidden states using data that follows the assumptions of a Hidden Markov Model.</li>
-      <li style="text-align:left"> You used viterbi decoding to find one structural-protein encoding region in Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes! </li>
+      <li style="text-align:left"> You used viterbi decoding to find one structural-protein encoding region in a sequence of Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes! </li>
       <li style="text-align:left"> This led to a new theory of the tree of life, where Eukaryotes developed directly from Archaea rather than separately. </li>
 
     </ul>
