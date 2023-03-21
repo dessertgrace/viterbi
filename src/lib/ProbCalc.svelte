@@ -202,7 +202,7 @@
 
     <div id="row3">
         <div class="totalMath"> 
-            <Katex>{String.raw`P_{total}=`}{totalProb.toExponential(2)}</Katex>
+            <Katex>{String.raw`P_{n}=`}{totalProb.toExponential(2)}</Katex>
         </div>
         <p> scroll <i class="arrow right" ></i> </p>
     </div>

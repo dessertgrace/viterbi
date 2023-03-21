@@ -163,7 +163,7 @@
       </div>
 
     <p> Applying HMMs to our problem, the status of low- or high-GC region at every nucleotide are the hidden states, and the nucleotides observed are the resulting observations from each state.</p>
-    <p> The transition and emission probabilities for low- and high-GC regions in Archaea are the following:</p>
+    <p> Suppose the transition and emission probabilities for low- and high-GC regions in Archaea are the following:</p>
 
     
     <div class="imageWrap">
@@ -314,7 +314,7 @@
               <br>
               The <strong>three-domain</strong> tree of life was the dominant theory taught in all biology classes around the world.
               But in the last decade, after more and more of these Archaea were discovered and studied using computational biology techniques, 
-              scientists have found strong evidence for a<strong> two-domain</strong> tree of life, where Eukaryotes developed from Archaea directly. 
+              scientists have found strong evidence for a <strong> two-domain</strong> tree of life, where Eukaryotes developed from Archaea directly. 
               </div>
           </Collapsible>
         </div>
@@ -336,7 +336,7 @@
     <ul>
       <li style="text-align:left"> Archaea are single-celled microorganisms that often live in extreme environments.</li>
       <li style="text-align:left"> Viterbi decoding is a dynamic programming technique used to find the most likely sequence of hidden states using data that follows the assumptions of a Hidden Markov Model.</li>
-      <li style="text-align:left"> You used viterbi decoding to find one structural-protein encoding region in a sequence of Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes! </li>
+      <li style="text-align:left"> You used Viterbi decoding to find one structural-protein encoding region in a sequence of Archaeal DNA, and this region was extremely similar to one thought to only exist in eukaryotes! </li>
       <li style="text-align:left"> This led to a new theory of the tree of life, where Eukaryotes developed directly from Archaea rather than separately. </li>
 
     </ul>
@@ -352,7 +352,7 @@
       <li> <a href="https://doi.org/10.1038/nmicrobiol.2016.48"> Hug, L., Baker, B., Anantharaman, K. et al. A new view of the tree of life. Nat Microbiol 1, 16048 (2016).</a></li>
     </ul>
     <!-- <br> -->
-    <h3> Acknowledgements </h3>
+    <h3> Acknowledgements: </h3>
     <ul>
       <li> Thank you to my sister Juju for help with biology and inspiration to study Archaea.</li>
       <li> Thank you to my brother Daniel for being my guinea pig student and for constructive edits.</li>
