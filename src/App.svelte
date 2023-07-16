@@ -346,7 +346,6 @@
   <footer>
     <hr>
     <p> <strong> by Grace Dessert, March 2023 </strong> </p>
-    <p style="margin: 0px">Check out my <a href="https://github.com/dessertgrace/viterbi">code on GitHub</a>.</p>
     <h3> Thanks for engaging with this interactive lesson! </h3>
     <p style="margin: 0px"> The content is based on real breakthroughs in biology over the past decade. Read this seminal scientific paper to learn more!</p>
     <ul>
@@ -369,6 +368,8 @@
       <li> <a href="https://biologicalsciences.blogs.bristol.ac.uk/2019/12/09/our-deep-origins-deciphering-the-earliest-branches-on-the-tree-of-life/"> Tree of life image </li>
 
     </ul>
+    <!-- <br> -->
+    <p>Check out my <a href="https://github.com/dessertgrace/viterbi">code on GitHub</a>.</p>
   </footer>
 
 </main>
